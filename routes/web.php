@@ -8,6 +8,8 @@ Route::view('/', 'welcome')->name('home');
 Route::get('/createUser', [App\Http\Controllers\UserController::class, 'create'])->name('createUser');
 Route::post('/createUser', [App\Http\Controllers\UserController::class, 'store'])->name('createUser.store');
 Route::post('/createRandom', [App\Http\Controllers\UserController::class, 'storeRandom'])->name('createUser.random');
+Route::get('/registerNewUser', [App\Http\Controllers\UserController::class, 'registerNewUser'])->name('registerNewUser');
+Route::post('/registerNewUser', [App\Http\Controllers\UserController::class, 'store'])->name('newRegister');   
 
 // Employee
 Route::get('/employees', [App\Http\Controllers\EmployeeController::class, 'index'])->name('employees.index');
@@ -16,6 +18,7 @@ Route::post('/employees/convert', [App\Http\Controllers\EmployeeController::clas
 Route::get('/employees/{id}', [App\Http\Controllers\EmployeeController::class, 'show'])->name('employees.show');
 Route::get('/employees/{id}/edit', [App\Http\Controllers\EmployeeController::class, 'edit'])->name('employees.edit');
 Route::put('/employees/{id}', [App\Http\Controllers\EmployeeController::class, 'update'])->name('employees.update');
+Route::get('/employees/settings', [App\Http\Controllers\EmployeeController::class, 'settings'])->name('employees.settings');
 
 // Route::get('employees/{id}', [App\Http\Controllers\EmployeeController::class, 'show'])->name('employees.show');
 // Route::get('employees/{id}/edit', [App\Http\Controllers\EmployeeController::class, 'edit'])->name('employees.edit');

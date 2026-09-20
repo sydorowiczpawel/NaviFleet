@@ -1,17 +1,9 @@
 {
-    "cloud": true,
+    "agents": [
+        "copilot"
+    ],
     "guidelines": true,
-    "mcp": true,
-    "nightwatch": false,
-    "sail": false,
-    "skills": [
-        "infer-conventions",
-        "deploying-to-cloud",
-        "fortify-development",
-        "laravel-best-practices",
-        "testing-best-practices",
-        "fluxui-development",
-        "livewire-development",
-        "tailwindcss-development"
+    "packages": [
+        "livewire/blaze"
     ]
 }

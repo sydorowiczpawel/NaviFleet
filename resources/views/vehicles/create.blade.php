@@ -1,6 +1,4 @@
 
-gagatek
-
 <x-layouts::app :title="__('Dodaj nowy pojazd')">
 
     <div class="flex flex-col gap-6 max-w-3xl">

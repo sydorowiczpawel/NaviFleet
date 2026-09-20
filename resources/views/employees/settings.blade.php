@@ -1,0 +1,1 @@
+tu beda informacje o koncie dla jego posiadacza

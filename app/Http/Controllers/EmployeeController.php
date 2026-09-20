@@ -23,7 +23,7 @@ class EmployeeController extends Controller
     public function create()
     {
         // formularz przekształcenia użytkownika w pracownika
-        $users = User::orderBy('email')->get();
+        $users = User::whereDoesntHave('employee')->get(); // pobieramy tylko użytkowników, którzy nie są jeszcze pracownikami
 
         return view('employees.convert', compact('users'));
     }   
@@ -37,7 +37,7 @@ class EmployeeController extends Controller
             'department' => ['required', 'string', 'max:255'],
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $request->email)->firstOrFail();
 
         // omijamy administratora aplikacji
         if ($user->role === 'administrator aplikacji') {
@@ -49,13 +49,18 @@ class EmployeeController extends Controller
             return redirect()->back()->with('error', 'Użytkownik jest już pracownikiem.');
         }
 
+        // jeśli już ma rekord w employees → nie rób nic / zwróć błąd
+        if (Employee::where('user_id', $user->id)->exists()) {
+        return back()->with('error', 'Ten użytkownik ma już nadane uprawnienia.');
+    }
+
         // tworzymy nowego pracownika
-        $employee = new Employee();
-        $employee->user_id = $user->id;
-        $employee->job_role = $request->job_role;
-        $employee->department = $request->department;
-        $employee->hired_at = now();
-        $employee->save();  
+        $employee = Employee::create([
+            'user_id' => $user->id,
+            'job_role' => $request->job_role,
+            'department' => $request->department,
+            'active' => true,
+        ]);
 
         
         return back()->with('success', 'Pracownik został pomyślnie utworzony.');
@@ -85,5 +90,10 @@ class EmployeeController extends Controller
         $employee->update($validatedData);
 
         return redirect()->route('employees.show', $employee->id)->with('success', 'Pracownik został pomyślnie zaktualizowany.');
+    }
+
+    public function settings()
+    {
+        return view('employees.settings');
     }
 }
