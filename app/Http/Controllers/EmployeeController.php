@@ -20,9 +20,9 @@ class EmployeeController extends Controller
         return view('employees.index', compact('employees'));
     }
 
-    public function create()
+    public function givePrivileges()
     {
-        // formularz przekształcenia użytkownika w pracownika
+        // formularz nadawania uprawnień    
         $users = User::whereDoesntHave('employee')->get(); // pobieramy tylko użytkowników, którzy nie są jeszcze pracownikami
 
         return view('employees.convert', compact('users'));

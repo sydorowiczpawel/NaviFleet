@@ -13,7 +13,7 @@ Route::post('/registerNewUser', [App\Http\Controllers\UserController::class, 'st
 
 // Employee
 Route::get('/employees', [App\Http\Controllers\EmployeeController::class, 'index'])->name('employees.index');
-Route::get('/employees/create', [App\Http\Controllers\EmployeeController::class, 'create'])->name('employees.create');
+Route::get('/employees/givePrivileges', [App\Http\Controllers\EmployeeController::class, 'givePrivileges'])->name('employees.givePrivileges');
 Route::post('/employees/convert', [App\Http\Controllers\EmployeeController::class, 'convertFromUser'])->name('employees.convert');
 Route::get('/employees/{id}', [App\Http\Controllers\EmployeeController::class, 'show'])->name('employees.show');
 Route::get('/employees/{id}/edit', [App\Http\Controllers\EmployeeController::class, 'edit'])->name('employees.edit');
@@ -26,7 +26,8 @@ Route::get('/employees/settings', [App\Http\Controllers\EmployeeController::clas
 // Route::delete('employees/{id}', [App\Http\Controllers\EmployeeController::class, 'destroy'])->name('employees.destroy');
 
 // Vehicle
-Route::get('/vehicles', [App\Http\Controllers\VehicleController::class, 'index'])->name('vehicles.index');
+Route::get('/vehicles', \App\Livewire\VehiclesIndex::class)->name('vehicles.index');
+// Route::get('/vehicles', [App\Http\Controllers\VehicleController::class, 'index'])->name('vehicles.index');
 Route::get('/vehicles/create', [App\Http\Controllers\VehicleController::class, 'create'])->name('vehicles.add');
 Route::post('/vehicles', [App\Http\Controllers\VehicleController::class, 'store'])->name('vehicles.store');
 Route::get('/vehicles/{id}/edit', [App\Http\Controllers\VehicleController::class, 'edit'])->name('vehicles.edit');
