@@ -54,4 +54,9 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'Losowy użytkownik został zapisany.');
     }
+
+    public function registerNewUser()
+    {
+        return view('employees.registerUser');
+    }
 }

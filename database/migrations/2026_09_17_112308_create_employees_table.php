@@ -28,6 +28,8 @@ return new class extends Migration
         $table->date('hired_at')->nullable();
         $table->date('terminated_at')->nullable();
 
+        $table->unique('user_id'); // każdy user może być tylko jednym pracownikiem
+
         $table->timestamps();
     });
     }
