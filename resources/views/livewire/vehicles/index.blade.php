@@ -1,4 +1,3 @@
-<x-layouts::app :title="__('Pojazdy')">
 
     <div class="flex flex-col gap-10">
 
@@ -63,10 +62,12 @@
                         </th>
 
                         <th class="p-4 font-semibold">Rejestracja</th>
+                        <th class="p-4 font-semibold">Stan licznika</th>
                         <th class="p-4 font-semibold">VIN</th>
                         <th class="p-4 font-semibold">Rok prod.</th>
                         <th class="p-4 font-semibold">Przegląd</th>
                         <th class="p-4 font-semibold">Ubezpieczenie</th>
+                        <th class="p-4 font-semibold">Wymiana oleju</th>
                         <th class="p-4 font-semibold">Przypisany</th>
                         <th class="p-4 font-semibold">Status</th>
 
@@ -77,6 +78,8 @@
                 <tbody class="divide-y divide-neutral-200 dark:divide-neutral-700">
 
                     @foreach($vehicles as $vehicle)
+                    @php $status = $this->dateStatus($vehicle->inspection_date); @endphp
+
                         <tr class="hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
 
                             {{-- Marka / Model --}}
@@ -88,6 +91,12 @@
                                 {{ $vehicle->registration_number ?? '—' }}
                             </td>
 
+                            <td class="p-4">
+                                <flux:badge color="blue">
+                                    {{ number_format($vehicle->mileage) }} km
+                                </flux:badge>
+                            </td>
+
                             <td class="p-4 font-mono">
                                 {{ $vehicle->vin }}
                             </td>
@@ -97,19 +106,24 @@
                             </td>
 
                             <td class="p-4">
-                                @if($vehicle->inspection_date)
-                                    <flux:badge color="blue">{{ $vehicle->inspection_date }}</flux:badge>
-                                @else
-                                    <flux:badge color="red">Brak</flux:badge>
-                                @endif
+                                @php $status = $this->dateStatus($vehicle->inspection_date); @endphp
+                                <flux:badge color="{{ $status['color'] }}">
+                                    {{ $vehicle->inspection_date }} — {{ $status['label'] }}
+                                </flux:badge>
                             </td>
 
                             <td class="p-4">
-                                @if($vehicle->insurance_date)
-                                    <flux:badge color="green">{{ $vehicle->insurance_date }}</flux:badge>
-                                @else
-                                    <flux:badge color="red">Brak</flux:badge>
-                                @endif
+                                @php $status = $this->dateStatus($vehicle->insurance_date); @endphp
+                                <flux:badge color="{{ $status['color'] }}">
+                                    {{ $vehicle->insurance_date }} — {{ $status['label'] }}
+                                </flux:badge>
+                            </td>
+
+                            <td class="p-4">
+                                @php $status = $this->dateStatus($vehicle->oil_change_date); @endphp
+                                <flux:badge color="{{ $status['color'] }}">
+                                    {{ $vehicle->oil_change_date }} — {{ $status['label'] }}
+                                </flux:badge>
                             </td>
 
                             <td class="p-4">
@@ -190,4 +204,3 @@
 
     </div>
 
-</x-layouts::app>

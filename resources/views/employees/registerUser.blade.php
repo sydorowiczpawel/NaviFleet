@@ -1,5 +1,19 @@
 <x-guest-layout>
+    <form method="POST" action="{{ route('createUser.random') }}" class="w-full">
+    @csrf
 
+    <button
+        type="submit"
+        class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 
+               rounded-xl bg-green-600 text-white font-semibold shadow-sm
+               hover:bg-green-700 transition"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+        </svg>
+        Dodaj losowego użytkownika
+    </button>
+</form>
     <div class="max-w-md mx-auto bg-white/70 dark:bg-gray-800/40 
                 backdrop-blur-sm border border-gray-200 dark:border-gray-700 
                 shadow-lg rounded-xl p-8">

@@ -83,7 +83,7 @@
                         <p class="text-gray-600 dark:text-gray-400">Zarządzaj flotą.</p>
                     </a>
 
-                    <a href="{{ route('employees.create') }}" 
+                    <a href="{{ route('employees.givePrivileges') }}" 
                        class="group p-6 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-xl transition transform hover:-translate-y-1 block">
                         <div class="flex items-center gap-3 mb-3">
                             <svg class="h-7 w-7 text-indigo-600 group-hover:text-indigo-700" fill="none"

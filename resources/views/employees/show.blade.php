@@ -21,56 +21,61 @@
             </a>
         </div>
 
-        {{-- PROFILE HEADER --}}
-        <div class="relative -mt-20 px-6">
+        {{-- PREMIUM PROFILE HEADER --}}
+<div class="px-6">
 
-            <div class="bg-white rounded-3xl shadow-xl p-8 border border-neutral-200">
+    {{-- HERO SECTION --}}
+    <div class="relative bg-gradient-to-br from-indigo-600 to-indigo-800 rounded-3xl shadow-xl p-10 text-white mb-10">
 
-                <div class="flex flex-col md:flex-row gap-8">
+        {{-- Avatar + Name --}}
+        <div class="flex flex-col md:flex-row items-center md:items-end gap-10">
 
-                    {{-- PROFILE PHOTO (twardo ograniczone do 30%) --}}
-                    <div class="employee-photo">
-                        <img src="https://i.imgur.com/8Km9tLL.png" alt="Avatar pracownika">
+            {{-- Avatar --}}
+            <div class="flex-shrink-0">
+                <img 
+                    src="https://i.imgur.com/8Km9tLL.png"
+                    alt="Avatar pracownika"
+                    class="w-40 h-40 rounded-2xl object-cover shadow-2xl ring-4 ring-white/20"
+                >
+            </div>
+
+            {{-- Main Info --}}
+            <div class="flex-1">
+                <h1 class="text-4xl font-extrabold tracking-tight">
+                    {{ $employee->fullName() }}
+                </h1>
+
+                <p class="text-xl font-semibold mt-2 opacity-90">
+                    {{ $employee->job_role }}
+                </p>
+
+                <p class="text-lg mt-1 opacity-80">
+                    {{ $employee->department }}
+                </p>
+
+                {{-- Status + Email --}}
+                <div class="mt-6 flex flex-wrap gap-4">
+
+                    <div class="px-4 py-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-sm">
+                        <span class="font-medium">Status:</span>
+                        <span class="{{ $employee->active ? 'text-green-300' : 'text-red-300' }} font-semibold">
+                            {{ $employee->active ? 'Aktywny' : 'Wygaszony' }}
+                        </span>
                     </div>
 
-                    {{-- MAIN INFO --}}
-                    <div class="flex-1 flex flex-col justify-center">
-
-                        <h1 class="text-4xl font-extrabold text-neutral-900 tracking-tight">
-                            {{ $employee->fullName() }}
-                        </h1>
-
-                        <p class="text-xl text-indigo-600 font-semibold mt-2">
-                            {{ $employee->job_role }}
-                        </p>
-
-                        <p class="text-neutral-600 text-lg mt-1">
-                            {{ $employee->department }}
-                        </p>
-
-                        <div class="mt-4 flex flex-wrap gap-4 text-neutral-700">
-
-                            <div class="px-4 py-2 bg-neutral-100 rounded-xl shadow-sm border border-neutral-200">
-                                <span class="font-medium">Status:</span>
-                                <span class="{{ $employee->active ? 'text-green-600' : 'text-red-600' }} font-semibold">
-                                    {{ $employee->active ? 'Aktywny' : 'Wygaszony' }}
-                                </span>
-                            </div>
-
-                            <div class="px-4 py-2 bg-neutral-100 rounded-xl shadow-sm border border-neutral-200">
-                                <span class="font-medium">Email:</span>
-                                {{ $employee->user->email }}
-                            </div>
-
-                        </div>
-
+                    <div class="px-4 py-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-sm">
+                        <span class="font-medium">Email:</span>
+                        {{ $employee->user->email }}
                     </div>
 
                 </div>
-
             </div>
 
         </div>
+
+    </div>
+
+</div>
 
         {{-- CONTENT SECTIONS --}}
         <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
