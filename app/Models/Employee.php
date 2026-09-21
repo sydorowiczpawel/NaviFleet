@@ -24,4 +24,9 @@ class Employee extends Model
     {
         return $this->user->first_name . ' ' . $this->user->last_name;
     }
+
+    public function vehicles() {
+
+    return $this->hasMany(Vehicle::class);
+    }
 }
