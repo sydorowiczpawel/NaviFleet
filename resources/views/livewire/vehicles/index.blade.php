@@ -10,8 +10,8 @@
                 </flux:button>
 
                 <flux:button variant="ghost" color="green" wire:click="addRandomVehicle">
-    Dodaj losowy pojazd
-</flux:button>
+                    Dodaj losowy pojazd
+                </flux:button>
             </div>
 
             {{-- Wyszukiwarka --}}

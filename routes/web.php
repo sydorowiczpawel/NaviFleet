@@ -27,8 +27,9 @@ Route::get('/employees/settings', [App\Http\Controllers\EmployeeController::clas
 
 // Vehicle
 Route::get('/vehicles', \App\Livewire\VehiclesIndex::class)->name('vehicles.index');
+Route::get('/vehicles/create', \App\Livewire\VehiclesCreate::class)->name('vehicles.add');
 // Route::get('/vehicles', [App\Http\Controllers\VehicleController::class, 'index'])->name('vehicles.index');
-Route::get('/vehicles/create', [App\Http\Controllers\VehicleController::class, 'create'])->name('vehicles.add');
+// Route::get('/vehicles/create', [App\Http\Controllers\VehicleController::class, 'create'])->name('vehicles.add');
 Route::post('/vehicles', [App\Http\Controllers\VehicleController::class, 'store'])->name('vehicles.store');
 Route::get('/vehicles/{id}/edit', [App\Http\Controllers\VehicleController::class, 'edit'])->name('vehicles.edit');
 Route::put('/vehicles/{id}', [App\Http\Controllers\VehicleController::class, 'update'])->name('vehicles.update');

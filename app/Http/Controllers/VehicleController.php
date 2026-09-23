@@ -49,7 +49,6 @@ class VehicleController extends Controller
             'oil_change_date' => 'nullable|date',
         ]);
 
-        Vehicle::create($request->all());
 
         return redirect()->route('vehicles.index')->with('success', 'Pojazd został dodany.');
     }

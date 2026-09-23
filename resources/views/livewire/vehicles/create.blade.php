@@ -1,18 +1,12 @@
-
-<x-layouts::app :title="__('Dodaj nowy pojazd')">
-
     <div class="flex flex-col gap-6 max-w-3xl">
-
         <flux:card class="p-6">
-
-            <form method="POST" action="{{ route('vehicles.store') }}" class="flex flex-col gap-6">
-                @csrf
-
+            <form wire:submit.prevent="save" class="flex flex-col gap-6">
                 <!-- Marka -->
                 <flux:input 
                     label="Marka" 
                     placeholder="np. BMW, Audi, Ford"
                     name="make"
+                    wire:model.live="make"
                     required
                 />
 
@@ -21,6 +15,7 @@
                     label="Model" 
                     placeholder="np. X5, A4, Transit"
                     name="model"
+                    wire:model.live="model"
                     required
                 />
 
@@ -34,38 +29,43 @@
 
                 <!-- VIN -->
                 <flux:input 
-                    label="VIN" 
-                    placeholder="17 znaków VIN"
+                    label="VIN (17 znaków)" 
+                    placeholder="np. WBABA311A83629873"
                     name="vin"
+                    wire:model.live="vin"
                     required
                 />
 
                 <!-- Rok produkcji -->
-                <input 
+                <flux:input 
                     type="date"
                     label="Rok produkcji"
                     name="manufactured_year"
+                    wire:model.live="manufactured_year"
                     required
                 />
 
                 <!-- Data przeglądu -->
-                <input 
+                <flux:input 
                     type="date"
                     label="Data przeglądu"
                     name="inspection_date"
+                    wire:model.live="inspection_date"
                 />
 
                 <!-- Data ubezpieczenia -->
-                <input 
+                <flux:input 
                     type="date"
                     label="Data ubezpieczenia"
                     name="insurance_date"
+                    wire:model.live="insurance_date"
                 />
 
                 <!-- Przypisany pracownik -->
                 <flux:select 
                     label="Przypisz do pracownika"
                     name="employee_id"
+                    wire:.model.live="employee_id"
                 >
                     <option value="">— Nieprzypisany —</option>
 
@@ -83,12 +83,14 @@
                     label="Przebieg (km)"
                     name="mileage"
                     placeholder="np. 152000"
+                    wire:model.live="mileage"
                 />
 
                 <!-- Rodzaj paliwa -->
                 <flux:select 
                     label="Rodzaj paliwa"
                     name="fuel_type"
+                    wire:.model.live="fuel_type"
                 >
                     <option value="">— wybierz —</option>
                     <option value="benzyna">Benzyna</option>
@@ -98,16 +100,18 @@
                 </flux:select>
 
                 <!-- Data wymiany oleju -->
-                <input 
+                <flux:input 
                     type="date"
                     label="Data ostatniej wymiany oleju"
                     name="oil_change_date"
+                    wire:model.live="oil_change_date"
                 />
 
                 <!-- Status -->
                 <flux:select 
                     label="Status pojazdu"
                     name="is_active"
+                    wire:.model.live="is_active"
                     required
                 >
                     <option value="1">Aktywny</option>
@@ -122,11 +126,6 @@
                 >
                     Dodaj pojazd
                 </flux:button>
-
             </form>
-
         </flux:card>
-
     </div>
-
-</x-layouts::app>
